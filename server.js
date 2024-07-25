@@ -17,6 +17,16 @@ app.use((req, res, next) => {
   const delta = Date.now() - start;
   console.log(`${req.method} ${req.url} ${delta}ms`);
 });
+app.use(express.json()); // buit in middlleware function to handel json data from request //
+app.post("/friends", (req, req) => {
+  const newFriend = {
+    name: req.body.name,
+    id: friends.length,
+  };
+  friends.push(newFriend);
+  res.json(newFriend);
+});
+
 app.get("/friends", (req, res) => {
   res.json(friends);
 });
