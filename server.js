@@ -10,13 +10,19 @@ app.use((req, res, next) => {
   const delta = Date.now() - start;
   console.log(`${req.method} ${req.url} ${delta}ms`);
 });
-app.use(express.json()); // buit in middlleware function to handel json data from request //
-app.post("/friends", friendsController.postFriend);
 
-app.get("/friends", friendsController.getFriends);
+app.use(express.json()); // buit in middlleware function to handel json data from request //
+const friendsRouter = express.Router();
+
+friendsRouter.post("/", friendsController.postFriend);
+
+friendsRouter.get("/", friendsController.getFriends);
 app.listen(PORT, () => {
   console.log(`Listening on ${PORT}...`);
 });
+
+friendsRouter.get("/:friendId", friendsController.getFriend);
+
+app.use("/friends", friendsRouter);
 app.get("/messages", messageControlller.getMessages);
-app.post("/", messageControlller.postMessage);
-app.get("/friends/:friendId", friendsController.getFriend);
+app.post("/messages", messageControlller.postMessage);
