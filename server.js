@@ -18,7 +18,12 @@ app.use((req, res, next) => {
   console.log(`${req.method} ${req.url} ${delta}ms`);
 });
 app.use(express.json()); // buit in middlleware function to handel json data from request //
-app.post("/friends", (req, req) => {
+app.post("/friends", (req, res) => {
+  if (!req.body.name) {
+    res.status(400).json({
+      error: "Missing friend name",
+    });
+  }
   const newFriend = {
     name: req.body.name,
     id: friends.length,
