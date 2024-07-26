@@ -8,7 +8,7 @@ function postFriend(req, res) {
   }
   const newFriend = {
     name: req.body.name,
-    id: friends.length,
+    id: model.length,
   };
   model.push(newFriend);
   res.json(newFriend);
