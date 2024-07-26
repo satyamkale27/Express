@@ -3,16 +3,7 @@ messageControlller = require("./controllers/messages.controller");
 friendsController = require("./controllers/friends.controller");
 const app = express();
 const PORT = 3000;
-const friends = [
-  {
-    id: 0,
-    name: "Albert einstein",
-  },
-  {
-    id: 1,
-    name: "Satyam kale",
-  },
-];
+
 app.use((req, res, next) => {
   const start = Date.now();
   next();
