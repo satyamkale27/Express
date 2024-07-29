@@ -18,6 +18,13 @@ app.use((req, res, next) => {
 app.use("/site", express.static(path.join(__dirname, "public")));
 app.use(express.json()); // buit in middlleware function to handel json data from request //
 
+app.get("/", (req, res) => {
+  res.render("index", {
+    title: "My Friends Are VERYY Clear",
+    caption: "Let's go skiing!",
+  }); // to tell express we render handler file //
+});
+
 app.use("/friends", friendsRouter);
 app.use("/messages", messagesRouter);
 app.listen(PORT, () => {
