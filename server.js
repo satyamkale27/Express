@@ -1,6 +1,7 @@
 const express = require("express");
 const friendsRouter = require("./routes/friends.router");
 const messagesRouter = require("./routes/messages.router");
+const path = require("path");
 
 const app = express();
 const PORT = 3000;
@@ -12,7 +13,7 @@ app.use((req, res, next) => {
   console.log(`${req.method} ${req.baseUrl}${req.url} ${delta}ms`);
 });
 
-app.use(express.static("public"));
+app.use("/site", express.static(path.join(__dirname, "public")));
 app.use(express.json()); // buit in middlleware function to handel json data from request //
 
 app.use("/friends", friendsRouter);
