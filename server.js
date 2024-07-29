@@ -12,6 +12,7 @@ app.use((req, res, next) => {
   console.log(`${req.method} ${req.baseUrl}${req.url} ${delta}ms`);
 });
 
+app.use(express.static("public"));
 app.use(express.json()); // buit in middlleware function to handel json data from request //
 
 app.use("/friends", friendsRouter);
